@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { FormContainer, Label, SubmitButton } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContacts } from '../../redux/contactSlice';
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.account.contacts);
+  const contacts = useSelector(state => state.account.contacts.items);
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -23,7 +22,6 @@ export const Form = () => {
     }
 
     
-    dispatch(addContacts({ name, number }));
 
     setName('');
     setNumber('');

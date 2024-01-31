@@ -11,7 +11,7 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  border: 3px solid ${props => props.theme.colors.lightBlue};
+  border: 7px solid #4caf50;
   border-radius: ${props => props.theme.radii.md};
 `;
 
