@@ -12,7 +12,7 @@ export const Filter = () => {
           type="text"
           placeholder="Filter"
           value={filter}
-          onChange={e => dispatch(changeFilter(e.target.value))}
+          onChange={e => dispatch(changeFilter(e.target.value.trim()))}
         />
       </label>
     </>

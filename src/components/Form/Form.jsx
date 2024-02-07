@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import { FormContainer, Label, SubmitButton } from './Form.styled';
 import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../redux/operations';
 
 export const Form = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.account.contacts.items);
 
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   function handlSubmit(event) {
     event.preventDefault();
 
     const contactExists = contacts.some(
-      contact => contact.name === name || contact.number === number
+      contact => contact.name === name || contact.phone === phone
     );
   
     if (contactExists) {
@@ -21,10 +22,10 @@ export const Form = () => {
       return;
     }
 
-    
+    dispatch(addContact({ name, phone }));
 
     setName('');
-    setNumber('');
+    setPhone('');
   }
 
   return (
@@ -47,8 +48,8 @@ export const Form = () => {
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          value={number}
-          onChange={e => setNumber(e.target.value)}
+          value={phone}
+          onChange={e => setPhone(e.target.value)}
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
