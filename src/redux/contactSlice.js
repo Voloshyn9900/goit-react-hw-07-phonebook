@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-// import shortid from 'shortid';
 import { addContact, deleteContact, fetchContacts } from './operations';
-// import { useDispatch } from 'react-redux';
 
 const contactSlice = createSlice({
   name: 'contacts',
@@ -66,13 +62,3 @@ const contactSlice = createSlice({
 
 export const contactReducer = contactSlice.reducer;
 export const { changeFilter } = contactSlice.actions;
-
-const persistConfig = {
-  key: 'contacts',
-  storage,
-  whitelist: ['filter'],
-  // можно добавить name: 'contacts' Slice,
-  // blacklist: [''],
-};
-
-export const persistedReducer = persistReducer(persistConfig, contactReducer);
